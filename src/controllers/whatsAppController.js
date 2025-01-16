@@ -2,6 +2,8 @@
 const fs =require("fs")
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"))
 
+const whatsappService = require('../services/whatsappService')
+
 const verifyToken =(req,res) => {
   try {
     var accessToken = process.env.FB_API_KEY||''
@@ -26,10 +28,15 @@ const receivedMessages =(req,res) => {
         var changes = (entry["changes"])[0]
         var value = changes["value"]
         var messageObject = value["messages"]
-        var messages = messageObject[0]
-        var text = getTextUser(messages)
-        myConsole.log(messageObject)
-        console.log('user texted : :',text);
+        //this handel a regular text message
+        if(messageObject !== "undefined"){
+            var messages = messageObject[0]
+            var text = getTextUser(messages)
+            console.log('user texted : :',text);
+            const number = messages["from"]
+            whatsappService.sendWhatsappMessage("user say :"+text,number)
+        }
+        
         console.log('messageObject:',messageObject);
         
     } catch (error) {
