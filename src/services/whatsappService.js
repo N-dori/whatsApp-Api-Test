@@ -1,7 +1,7 @@
 const http = require('http')
 
 const sendWhatsappMessage = (textResponse, number) => {
-
+console.log('hello from sendWhatsappMessage')
 const data = JSON.stringify(
     {
         "messaging_product": "whatsapp",    
