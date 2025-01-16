@@ -1,3 +1,7 @@
+
+const fs =require("fs")
+const myConsole = new console.Console(fs.createWriteStream("./logs.txt"))
+
 const verifyToken =(req,res) => {
   try {
     var accessToken = process.env.FB_API_KEY||''
@@ -15,8 +19,18 @@ const verifyToken =(req,res) => {
 }
     res.send('hello from verify token')
 }
+
 const receivedMessages =(req,res) => {
-    res.send('hello from received messages')
+    try {
+        var entry = (req.body["entry"])[0]
+        var changes = (entry["changes"])[0]
+        var value = changes["value"]
+        var messageObject = value["messages"]
+        myConsole.log(messageObject)
+    } catch (error) {
+        myConsole.log(error)
+        res.send('EVENT_RECEIVED')
+    }
 }
 
 module.exports = {
