@@ -1,72 +1,77 @@
 
-const fs =require("fs")
+const fs = require("fs")
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"))
 
 const whatsappService = require('../services/whatsappService')
 
-const verifyToken =(req,res) => {
-  try {
-    var accessToken = process.env.FB_API_KEY||''
-    var token = req.query['hub.verify_token']
-    var challenge = req.query['hub.challenge']
-    if(challenge != null && token != null && token === accessToken){
-        res.send(challenge)
-    } else {
-        res.status(400).send()
-    }
+const verifyToken = (req, res) => {
+    try {
+        var accessToken = process.env.FB_API_KEY || ''
+        var token = req.query['hub.verify_token']
+        var challenge = req.query['hub.challenge']
+        if (challenge != null && token != null && token === accessToken) {
+            res.send(challenge)
+        } else {
+            res.status(400).send()
+        }
 
-  } catch (error) {
-    console.log('had a problem to verify token',error)
-    res.status(400).send
-}
+    } catch (error) {
+        console.log('had a problem to verify token', error)
+        res.status(400).send
+    }
     res.send('hello from verify token')
 }
 
-const receivedMessages =(req,res) => {
+const receivedMessages = (req, res) => {
     try {
-        var entry = (req.body["entry"])[0]
-        var changes = (entry["changes"])[0]
-        var value = changes["value"]
-        var messageObject = value["messages"]
+        const entry = req.body?.entry?.[0];
+        const changes = entry?.changes?.[0];
+        const value = changes?.value;
+        const messageObject = value?.messages;
         //this handel a regular text message
-        if(messageObject !== "undefined"){
-            var messages = messageObject[0]
-            const number = messages["from"]
-            var text = getTextUser(messages)
-            console.log('user texted : :',text);
-            console.log('from :',number);
-            whatsappService.sendWhatsappMessage("user say :" + text,number)
+        if (messageObject) {
+            const message = messageObject[0];
+            const number = message?.from;
+            const text = getTextUser(message);
+
+            console.log('User texted:', text);
+            console.log('From:', number);
+
+            // Send a WhatsApp message
+            whatsappService.sendWhatsappMessage(`User says: ${text}`, number);
+        } else {
+            console.log('No message object found in webhook payload.');
         }
-        
-        console.log('messageObject:',messageObject);
-        
+
+        console.log('messageObject:', messageObject);
+        res.status(200).send('EVENT_RECEIVED');
     } catch (error) {
         myConsole.log(error)
-        console.log('error:',error);
+        console.log('error:', error);
         res.send('EVENT_RECEIVED')
     }
 }
 
-const getTextUser = (messages)=>{
+const getTextUser = (messages) => {
     let text = ''
-    let typeMessage =messages["type"]
-    if(typeMessage === 'text'){
+    let typeMessage = messages["type"]
+    if (typeMessage === 'text') {
         text = messages["text"].body
         return text
     }
-    if (typeMessage === 'interactive'){
+    if (typeMessage === 'interactive') {
         let interactiveObject = messages["interactive"]
         let typeInteractive = interactiveObject.type
-        if(typeInteractive === 'button_reply'){
+        if (typeInteractive === 'button_reply') {
             text = interactiveObject.button_reply.title
             return text
         }
-       else if(typeInteractive === 'list_reply'){
+        else if (typeInteractive === 'list_reply') {
             text = interactiveObject.list_reply.title
             return text
-        }else {
+        } else {
             console.log('tried to get text but no message')
-            
+
         }
     } else {
         console.log('tried to get text but no message')
