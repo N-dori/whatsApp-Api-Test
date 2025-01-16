@@ -1,7 +1,4 @@
 
-const fs = require("fs")
-const myConsole = new console.Console(fs.createWriteStream("./logs.txt"))
-
 const whatsappService = require('../services/whatsappService')
 
 const verifyToken = (req, res) => {
@@ -46,9 +43,8 @@ const receivedMessages = (req, res) => {
         console.log('messageObject:', messageObject);
         res.status(200).send('EVENT_RECEIVED');
     } catch (error) {
-        myConsole.log(error)
-        console.log('error:', error);
-        res.send('EVENT_RECEIVED')
+        console.error('Error processing the request:', error);
+        res.status(500).send('Error processing the request');
     }
 }
 
