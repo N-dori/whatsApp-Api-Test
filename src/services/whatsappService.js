@@ -6,10 +6,10 @@ const data = JSON.stringify(
     {
         "messaging_product": "whatsapp",    
         "to": number,
-        "type": "text",
         "text": {
             "body": textResponse
-        }
+        },
+        "type": "text",
     }
 )
 
@@ -20,13 +20,13 @@ const options = {
     body:data,
     headers:{
         "Content-Type":"application/json",
-        authorization:`Bearer ${process.env.FB_API_KEY}`  
+        Authorization:`Bearer ${process.env.FB_API_KEY}`  
     }
 }
 
 const req = http.request(options ,res => {
-    res.on("data", data =>{
-        process.stdout.write(data)
+    res.on("data", d =>{
+        process.stdout.write(d)
     })
 })
 req.on("error", error => {

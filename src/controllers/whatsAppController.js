@@ -31,10 +31,11 @@ const receivedMessages =(req,res) => {
         //this handel a regular text message
         if(messageObject !== "undefined"){
             var messages = messageObject[0]
+            const number = messages["from"]
             var text = getTextUser(messages)
             console.log('user texted : :',text);
-            const number = messages["from"]
-            whatsappService.sendWhatsappMessage("user say :"+text,number)
+            console.log('from :',number);
+            whatsappService.sendWhatsappMessage("user say :" + text,number)
         }
         
         console.log('messageObject:',messageObject);
