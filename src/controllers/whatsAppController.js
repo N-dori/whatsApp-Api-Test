@@ -26,7 +26,10 @@ const receivedMessages =(req,res) => {
         var changes = (entry["changes"])[0]
         var value = changes["value"]
         var messageObject = value["messages"]
+        var messages = messageObject[0]
+        var text = getTextUser(messages)
         myConsole.log(messageObject)
+        console.log('user texted : :',text);
         console.log('messageObject:',messageObject);
         
     } catch (error) {
@@ -34,6 +37,30 @@ const receivedMessages =(req,res) => {
         console.log('error:',error);
         res.send('EVENT_RECEIVED')
     }
+}
+
+const getTextUser = (messages)=>{
+    let text = ''
+    let typeMessage =messages["type"]
+    if(typeMessage === 'text'){
+        text = messages["text"].body
+    }
+    if (typeMessage === 'interactive'){
+        let interactiveObject = messages["interactive"]
+        let typeInteractive = interactiveObject.type
+        if(typeInteractive === 'button_reply'){
+            text = interactiveObject.button_reply.title
+        }
+       else if(typeInteractive === 'list_reply'){
+            text = interactiveObject.list_reply.title
+        }else {
+            console.log('no message')
+            
+        }
+    } else {
+        console.log('no message')
+    }
+
 }
 
 module.exports = {
