@@ -44,21 +44,24 @@ const getTextUser = (messages)=>{
     let typeMessage =messages["type"]
     if(typeMessage === 'text'){
         text = messages["text"].body
+        return text
     }
     if (typeMessage === 'interactive'){
         let interactiveObject = messages["interactive"]
         let typeInteractive = interactiveObject.type
         if(typeInteractive === 'button_reply'){
             text = interactiveObject.button_reply.title
+            return text
         }
        else if(typeInteractive === 'list_reply'){
             text = interactiveObject.list_reply.title
+            return text
         }else {
-            console.log('no message')
+            console.log('tried to get text but no message')
             
         }
     } else {
-        console.log('no message')
+        console.log('tried to get text but no message')
     }
 
 }
