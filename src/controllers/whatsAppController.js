@@ -1,8 +1,8 @@
 const verifyToken =(req,res) => {
   try {
-    let accessToken = process.env.FB_API_KEY||''
-    let token = req.query('hub.verify_token')
-    let challenge = req.query('hub.challenge')
+    var accessToken = process.env.FB_API_KEY||''
+    var token = req.query['hub.verify_token']
+    var challenge = req.query['hub.challenge']
     if(challenge != null && token != null && token === accessToken){
         res.send(challenge)
     } else {
