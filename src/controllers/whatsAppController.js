@@ -1,6 +1,8 @@
 
 const whatsappService = require('../services/whatsappService')
 
+const samples = require('../shared/sampleModels')
+
 const verifyToken = (req, res) => {
     try {
         var accessToken = process.env.FB_API_KEY || ''
@@ -32,10 +34,10 @@ const receivedMessages = (req, res) => {
             const text = getTextUser(message);
 
             console.log('User texted:', text);
-            console.log('From:', number);
-
+                const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
+                const data = samples.sampleListButtons(textResponse,number)
+                whatsappService.sendWhatsappMessage(data);
             // Send a WhatsApp message
-            whatsappService.sendWhatsappMessage(`User says: ${text}`, number);
         } else {
             console.log('No message object found in webhook payload.');
         }

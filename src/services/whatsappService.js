@@ -1,17 +1,8 @@
 const https = require('https')
 
-const sendWhatsappMessage = (textResponse, number) => {
+const sendWhatsappMessage = (data) => {
 console.log('hello from sendWhatsappMessage')
-const data = JSON.stringify(
-    {
-        "messaging_product": "whatsapp",    
-        "to": number,
-        "text": {
-            "body": textResponse
-        },
-        "type": "text",
-    }
-)
+
 
 const options = {
     host: "graph.facebook.com",
@@ -39,7 +30,7 @@ const req = https.request(options ,res => {
 req.on("error", error => {
     console.log('Request error',error)
 })
-
+// write the data on the body
 req.write(data)
 req.end()
 }
