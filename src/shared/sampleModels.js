@@ -178,7 +178,7 @@ const sampleListButtons = (textResponse,number) => {
                                 },
                                 {
                                     "id": "003",
-                                    "title": "לכרטיסים לסיורים לחץ כאן",
+                                    "title": "לכרטיסים לסיורים",
                                     "description": "בלחיצה ישלח אליכם לינק לרכישת כרטיסים"
                                 }
                             ]
@@ -188,7 +188,7 @@ const sampleListButtons = (textResponse,number) => {
                             "rows": [
                                 {
                                     "id": "004",
-                                    "title": "מידע על הסיורים שאתם מציעים",
+                                    "title": "מידע על הסיורים",
                                     "description": "בלחיצה כאן ישלח אילכם קישור עם כל הפרטים "
                                 },
                                
