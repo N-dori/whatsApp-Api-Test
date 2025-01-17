@@ -144,12 +144,12 @@ const sampleListButtons = (textResponse,number) => {
 
             "interactive": {
                 "type": "list",
-                "header": {
-                    "type": "text",
-                    "text": textResponse
-                },
+                // "header": {
+                //     "type": "text",
+                //     "text": textResponse
+                // },
                 "body": {
-                    "text": "לחץ כאן כדי לצפות באפשרויות:"
+                    "text": "לחץ כאן כדי לצפייה באפשרויות:"
                 },
                 // "footer": {
                 //     "text": "Powered by N-DevWeb"
@@ -163,7 +163,7 @@ const sampleListButtons = (textResponse,number) => {
                                 {
                                     "id": "001",
                                     "title": "אנא חזרו אלי",
-                                    "description": "בלחיצה ישלח אליכם לינק להשארת פרטים"
+                                    // "description": "בלחיצה ישלח אליכם לינק להשארת פרטים"
                                 },
 
                             ]
@@ -174,12 +174,12 @@ const sampleListButtons = (textResponse,number) => {
                                 {
                                     "id": "002",
                                     "title": "להזמנת סיורים לקבוצות",
-                                    "description": "לחץ כאן כדי להתקדם לשלב הבא"
+                                    // "description": "לחץ כאן כדי להתקדם לשלב הבא"
                                 },
                                 {
                                     "id": "003",
                                     "title": "לכרטיסים לסיורים",
-                                    "description": "בלחיצה ישלח אליכם לינק לרכישת כרטיסים"
+                                    // "description": "בלחיצה ישלח אליכם לינק לרכישת כרטיסים"
                                 }
                             ]
                         },
@@ -189,7 +189,7 @@ const sampleListButtons = (textResponse,number) => {
                                 {
                                     "id": "004",
                                     "title": "מידע על הסיורים",
-                                    "description": "בלחיצה כאן ישלח אילכם קישור עם כל הפרטים "
+                                    // "description": "בלחיצה כאן ישלח אילכם קישור עם כל הפרטים "
                                 },
                                
                             ]
