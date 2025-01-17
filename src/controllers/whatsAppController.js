@@ -34,16 +34,28 @@ const receivedMessages = (req, res) => {
             const text = getTextUser(message);
 
             console.log('User texted:', text);
+                // if(text === ' '){
+                //     const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
+                //     const data = samples.sampleListButtons(textResponse,number)
+                //     return 
+
+                // }
+                // if(text === ' '){
+                //     const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
+                //     const data = samples.sampleListButtons(textResponse,number)
+                //     return 
+                // }
+
                 const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
                 const data = samples.sampleListButtons(textResponse,number)
                 whatsappService.sendWhatsappMessage(data);
+                console.log('messageObject:', messageObject);
+                res.status(200).send('EVENT_RECEIVED');
             // Send a WhatsApp message
         } else {
             console.log('No message object found in webhook payload.');
         }
 
-        console.log('messageObject:', messageObject);
-        res.status(200).send('EVENT_RECEIVED');
     } catch (error) {
         console.error('Error processing the request:', error);
         res.status(500).send('Error processing the request');
