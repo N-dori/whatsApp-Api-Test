@@ -48,9 +48,10 @@ const receivedMessages = (req, res) => {
 
                 const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
                 const dataForText = samples.sampleText(textResponse,number)
+                whatsappService.sendWhatsappMessage(dataForText);
                 const buttonListTitle ='לתפריט האפשרויות'
-                const data = samples.sampleListButtons(buttonListTitle,number)
-                whatsappService.sendWhatsappMessage(data);
+                const dataForButtonList = samples.sampleListButtons(buttonListTitle,number)
+                whatsappService.sendWhatsappMessage(dataForButtonList);
                 console.log('messageObject:', messageObject);
                 res.status(200).send('EVENT_RECEIVED');
             // Send a WhatsApp message
