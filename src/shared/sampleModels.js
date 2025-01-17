@@ -13,6 +13,21 @@ const sampleText = (textResponse, number) => {
     return data
 
 }
+const urlText = (urlText, number) => {
+
+    const data = JSON.stringify(
+        {
+            "messaging_product": "whatsapp",
+            "to": number,
+            "text": {
+                "preview_url": true,
+                "body": urlText,//"Please visit https://youtu.be/hpltvTEiRrY to inspire your day!"
+            }
+        }
+    )
+    return data
+
+}
 
 const sampleImage = (imgUrl, number) => {
 
@@ -213,5 +228,6 @@ module.exports = {
     sampleVideo,
     sampleAudio,
     sampleText,
-    sampleImage
+    sampleImage,
+    urlText,
 }

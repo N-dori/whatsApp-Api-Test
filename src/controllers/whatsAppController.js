@@ -34,17 +34,13 @@ const receivedMessages = (req, res) => {
             const text = getTextUser(message);
 
             console.log('User texted:', text);
-                // if(text === ' '){
-                //     const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
-                //     const data = samples.sampleListButtons(textResponse,number)
-                //     return 
+                if(text === 'אנא חזרו אלי'){
+                    const urlText = 'אנא ציין שם, טלפון ומייל לחזרהhttps://windfarm.co.il/צרו-קשר/'
+                    const data = samples.urlText(textResponse,number)
+                    return 
 
-                // }
-                // if(text === ' '){
-                //     const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
-                //     const data = samples.sampleListButtons(textResponse,number)
-                //     return 
-                // }
+                }
+              
 
                 const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
                 const dataForText = samples.sampleText(textResponse,number)
