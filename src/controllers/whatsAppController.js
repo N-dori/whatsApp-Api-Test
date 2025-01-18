@@ -36,7 +36,8 @@ const receivedMessages = (req, res) => {
             console.log('User texted:', text);
                 if(text === 'אנא חזרו אלי'){
                     const urlText = 'אנא ציין שם, טלפון ומייל לחזרהhttps://windfarm.co.il/צרו-קשר/'
-                    const data = samples.urlText(textResponse,number)
+                    const dataForUrlText = samples.urlText(urlText,number)
+                    whatsappService.sendWhatsappMessage(dataForUrlText);
                     return 
 
                 }
@@ -45,7 +46,7 @@ const receivedMessages = (req, res) => {
                 const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
                 const dataForText = samples.sampleText(textResponse,number)
                 whatsappService.sendWhatsappMessage(dataForText);
-                const buttonListTitle ='לתפריט האפשרויות'
+                const buttonListTitle ='לפתיחת תפריט האפשרויות'
                 const dataForButtonList = samples.sampleListButtons(buttonListTitle,number)
                 whatsappService.sendWhatsappMessage(dataForButtonList);
                 console.log('messageObject:', messageObject);
