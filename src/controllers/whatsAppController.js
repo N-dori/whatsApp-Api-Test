@@ -39,8 +39,8 @@ const receivedMessages = (req, res) => {
                 const textResponse = 'אנא ציין שם, טלפון ומייל לחזרה ונחזור אלייך בהקדם האפשרי תודה!'
                 const dataForText = samples.sampleText(textResponse,number)
                 whatsappService.sendWhatsappMessage(dataForText);
-                
-                    const urlText = 'https://windfarm.co.il/%D7%A6%D7%95%D7%A8-%D7%A7%D7%A9%D7%A8'
+
+                    const urlText = 'https://windfarm.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/'
                     const dataForUrlText = samples.urlText(urlText,number)
                     whatsappService.sendWhatsappMessage(dataForUrlText);
                     res.status(200).send('EVENT_RECEIVED');
