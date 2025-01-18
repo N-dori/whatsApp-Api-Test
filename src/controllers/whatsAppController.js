@@ -35,7 +35,12 @@ const receivedMessages = (req, res) => {
 
             console.log('User texted:', text);
                 if(text === 'אנא חזרו אלי'){
-                    const urlText = 'אנא ציין שם, טלפון ומייל לחזרה /צרו-קשר/https://windfarm.co.il'
+                    
+                const textResponse = 'אנא ציין שם, טלפון ומייל לחזרה ונחזור אלייך בהקדם האפשרי תודה!'
+                const dataForText = samples.sampleText(textResponse,number)
+                whatsappService.sendWhatsappMessage(dataForText);
+                
+                    const urlText = 'https://windfarm.co.il/%D7%A6%D7%95%D7%A8-%D7%A7%D7%A9%D7%A8'
                     const dataForUrlText = samples.urlText(urlText,number)
                     whatsappService.sendWhatsappMessage(dataForUrlText);
                     res.status(200).send('EVENT_RECEIVED');
