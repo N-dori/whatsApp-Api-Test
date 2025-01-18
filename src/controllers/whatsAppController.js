@@ -37,14 +37,14 @@ const receivedMessages = (req, res) => {
             
                 if(text === 'אנא חזרו אלי'){
                     
-                const textResponse = 'יש לציין שם, טלפון ומייל לחזרה דרך הלינק המצורף ונחזור אלייך בהקדם האפשרי תודה!'
-                const urlText = 'https://windfarm.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/';
+                // const textResponse = 'יש לציין שם, טלפון ומייל לחזרה דרך הלינק המצורף ונחזור אלייך בהקדם האפשרי תודה!'
+                const urlText = 'יש לציין שם, טלפון ומייל לחזרה דרך הלינק המצורף ונחזור אלייך בהקדם האפשרי תודה! https://windfarm.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/';
                 
-                const dataForText = messageType.text(textResponse, number);
+                // const dataForText = messageType.text(textResponse, number);
                 const dataForUrlText = messageType.urlText(urlText, number);
                 
                 // Send the first message
-                whatsappService.sendWhatsappMessage(dataForText)
+                // whatsappService.sendWhatsappMessage(dataForText)
                 whatsappService.sendWhatsappMessage(dataForUrlText)
                 res.status(200).send('EVENT_RECEIVED');
 
