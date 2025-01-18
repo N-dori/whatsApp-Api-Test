@@ -37,17 +37,32 @@ const receivedMessages = (req, res) => {
             
                 if(text === 'אנא חזרו אלי'){
                     
-                const textResponse = 'דרך הלינק מצורף ולציין שם, טלפון ומייל לחזרה ונחזור אלייך בהקדם האפשרי תודה!'
-                const dataForText = messageType.text(textResponse,number)
-                whatsappService.sendWhatsappMessage(dataForText);
-                res.status(200).send('EVENT_RECEIVED');
-                    
-                setTimeout(() => {          
-                        const urlText = 'https://windfarm.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/'
-                        const dataForUrlText = messageType.urlText(urlText,number)
-                        whatsappService.sendWhatsappMessage(dataForUrlText);
-                        res.status(200).send('EVENT_RECEIVED');
-                    }, 200);
+                const textResponse = 'יש לציין שם, טלפון ומייל לחזרה דרך הלינק המצורף ונחזור אלייך בהקדם האפשרי תודה!'
+                const urlText = 'https://windfarm.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/';
+                
+                const dataForText = messageType.text(textResponse, number);
+                const dataForUrlText = messageType.urlText(urlText, number);
+                
+                // Send the first message
+                whatsappService.sendWhatsappMessage(dataForText)
+                    .then(() => {
+                        // Use a delay for the second message
+                        setTimeout(() => {
+                            whatsappService.sendWhatsappMessage(dataForUrlText)
+                                .then(() => {
+                                    // Respond after all messages are sent
+                                    res.status(200).send('EVENT_RECEIVED');
+                                })
+                                .catch((error) => {
+                                    console.error('Error sending second message:', error);
+                                    res.status(500).send('Error sending message');
+                                });
+                        }, 200);
+                    })
+                    .catch((error) => {
+                        console.error('Error sending first message:', error);
+                        res.status(500).send('Error sending message');
+                    });
 
                     return 
 
