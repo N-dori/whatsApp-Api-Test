@@ -45,24 +45,8 @@ const receivedMessages = (req, res) => {
                 
                 // Send the first message
                 whatsappService.sendWhatsappMessage(dataForText)
-                    .then(() => {
-                        // Use a delay for the second message
-                        setTimeout(() => {
-                            whatsappService.sendWhatsappMessage(dataForUrlText)
-                                .then(() => {
-                                    // Respond after all messages are sent
-                                    res.status(200).send('EVENT_RECEIVED');
-                                })
-                                .catch((error) => {
-                                    console.error('Error sending second message:', error);
-                                    res.status(500).send('Error sending message');
-                                });
-                        }, 200);
-                    })
-                    .catch((error) => {
-                        console.error('Error sending first message:', error);
-                        res.status(500).send('Error sending message');
-                    });
+                whatsappService.sendWhatsappMessage(dataForUrlText)
+                res.status(200).send('EVENT_RECEIVED');
 
                     return 
 
