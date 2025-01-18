@@ -1,4 +1,4 @@
-const sampleText = (textResponse, number) => {
+const text = (textResponse, number) => {
 
     const data = JSON.stringify(
         {
@@ -29,7 +29,7 @@ const urlText = (urlText, number) => {
 
 }
 
-const sampleImage = (imgUrl, number) => {
+const image = (imgUrl, number) => {
 
     const data = JSON.stringify(
         {
@@ -45,7 +45,7 @@ const sampleImage = (imgUrl, number) => {
 
 }
 
-const sampleAudio = (audioUrl, number) => {
+const audio = (audioUrl, number) => {
 
     const data = JSON.stringify(
         {
@@ -61,7 +61,7 @@ const sampleAudio = (audioUrl, number) => {
 
 }
 
-const sampleVideo = (videoUrl, number) => {
+const video = (videoUrl, number) => {
 
     const data = JSON.stringify(
         {
@@ -77,7 +77,7 @@ const sampleVideo = (videoUrl, number) => {
 
 }
 
-const sampleDocument = (documentUrl, number) => {
+const document = (documentUrl, number) => {
 
     const data = JSON.stringify(
         {
@@ -93,7 +93,7 @@ const sampleDocument = (documentUrl, number) => {
 
 }
 
-const sampleLocation = (lat,lon, number) => {
+const location = (lat,lon, number) => {
 
     const data = JSON.stringify(
         {
@@ -112,7 +112,7 @@ const sampleLocation = (lat,lon, number) => {
 
 }
 
-const sampleButtons = ( number) => {
+const buttons = ( number) => {
 
     const data = JSON.stringify(
         {
@@ -149,7 +149,7 @@ const sampleButtons = ( number) => {
 
 }
 
-const sampleListButtons = (textResponse,number) => {
+const listButtons = (textResponse,number) => {
 
     const data = JSON.stringify(
         {
@@ -221,13 +221,13 @@ const sampleListButtons = (textResponse,number) => {
 }
 
 module.exports = {
-    sampleListButtons,
-    sampleButtons,
-    sampleLocation,
-    sampleDocument,
-    sampleVideo,
-    sampleAudio,
-    sampleText,
-    sampleImage,
+    listButtons,
+    buttons,
+    location,
+    document,
+    video,
+    audio,
+    text,
+    image,
     urlText,
 }

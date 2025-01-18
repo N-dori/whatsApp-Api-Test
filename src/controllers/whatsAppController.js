@@ -1,7 +1,7 @@
 
 const whatsappService = require('../services/whatsappService')
 
-const samples = require('../shared/sampleModels')
+const messageType = require('../shared/models')
 
 const verifyToken = (req, res) => {
     try {
@@ -34,16 +34,20 @@ const receivedMessages = (req, res) => {
             const text = getTextUser(message);
 
             console.log('User texted:', text);
+            
                 if(text === 'אנא חזרו אלי'){
                     
-                const textResponse = 'אנא ציין שם, טלפון ומייל לחזרה ונחזור אלייך בהקדם האפשרי תודה!'
-                const dataForText = samples.sampleText(textResponse,number)
+                const textResponse = 'דרך הלינק מצורף ולציין שם, טלפון ומייל לחזרה ונחזור אלייך בהקדם האפשרי תודה!'
+                const dataForText = messageType.text(textResponse,number)
                 whatsappService.sendWhatsappMessage(dataForText);
-
-                    const urlText = 'https://windfarm.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/'
-                    const dataForUrlText = samples.urlText(urlText,number)
-                    whatsappService.sendWhatsappMessage(dataForUrlText);
-                    res.status(200).send('EVENT_RECEIVED');
+                res.status(200).send('EVENT_RECEIVED');
+                    
+                setTimeout(() => {          
+                        const urlText = 'https://windfarm.co.il/%d7%a6%d7%a8%d7%95-%d7%a7%d7%a9%d7%a8/'
+                        const dataForUrlText = messageType.urlText(urlText,number)
+                        whatsappService.sendWhatsappMessage(dataForUrlText);
+                        res.status(200).send('EVENT_RECEIVED');
+                    }, 200);
 
                     return 
 
@@ -51,10 +55,10 @@ const receivedMessages = (req, res) => {
               
 
                 const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
-                const dataForText = samples.sampleText(textResponse,number)
+                const dataForText = messageType.text(textResponse,number)
                 whatsappService.sendWhatsappMessage(dataForText);
                 const buttonListTitle ='לפתיחת תפריט האפשרויות'
-                const dataForButtonList = samples.sampleListButtons(buttonListTitle,number)
+                const dataForButtonList = messageType.listButtons(buttonListTitle,number)
                 whatsappService.sendWhatsappMessage(dataForButtonList);
                 console.log('messageObject:', messageObject);
                 res.status(200).send('EVENT_RECEIVED');
