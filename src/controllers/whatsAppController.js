@@ -83,6 +83,19 @@ const receivedMessages = (req, res) => {
                     return 
 
                 }
+                if(text === 'שלח לי מיקום'){
+               
+                const dataForLocation = messageType.location( number);
+                
+                whatsappService.sendWhatsappMessage(dataForLocation)
+                const textResponse = 'נשמח לראותכם!'
+                const dataForText = messageType.text(textResponse,number)
+                whatsappService.sendWhatsappMessage(dataForText);
+                res.status(200).send('EVENT_RECEIVED');
+
+                    return 
+
+                }
               
 
                 const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'

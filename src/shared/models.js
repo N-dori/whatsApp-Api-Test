@@ -93,7 +93,7 @@ const document = (documentUrl, number) => {
 
 }
 
-const location = (lat,lon, number) => {
+const location = ( number) => {
 
     const data = JSON.stringify(
         {
@@ -101,10 +101,10 @@ const location = (lat,lon, number) => {
             "to": number,
             "type": "location",
             "location": {
-              "latitude":lat,//"32.45800934002756",
-              "longitude":lon,//"35.027855795172975",
-              "name":"קיבוץ מענית",
-              "address":"Kupat Holim, Ma'anit"
+              "latitude":32.4708522407944,
+              "longitude":35.42598270790838,
+              "name":"מרכז המבקרים חוות הרוח בגלבוע",
+              "address":"מעלה גלבוע, 1914500"
             }
         }
     )
@@ -208,7 +208,18 @@ const listButtons = (textResponse,number) => {
                                 },
                                
                             ]
-                        }
+                        },
+                        {
+                            "title": "מיקום",
+                            "rows": [
+                                {
+                                    "id": "005",
+                                    "title": "שלח לי מיקום",
+                                    // "description": "בלחיצה כאן ישלח אילכם קישור עם כל הפרטים "
+                                },
+                               
+                            ]
+                        },
                     ]
                 }
             }
