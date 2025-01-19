@@ -59,6 +59,30 @@ const receivedMessages = (req, res) => {
                     return 
 
                 }
+                if(text === 'לכרטיסים לסיורים'){
+                    const txt = '\nלרכישת כרטיסים לחץ כאן'
+                const urlText = `${txt} https://tickchak.co.il/13609`;
+                
+                const dataForUrlText = messageType.urlText(urlText, number);
+                
+                whatsappService.sendWhatsappMessage(dataForUrlText)
+                res.status(200).send('EVENT_RECEIVED');
+
+                    return 
+
+                }
+                if(text === 'מידע על הסיורים'){
+                    const txt = '\nלמידע על הסיורים שאנחנו מציעים לחץ כאן'
+                const urlText = `${txt} https://windfarm.co.il/`;
+                
+                const dataForUrlText = messageType.urlText(urlText, number);
+                
+                whatsappService.sendWhatsappMessage(dataForUrlText)
+                res.status(200).send('EVENT_RECEIVED');
+
+                    return 
+
+                }
               
 
                 const textResponse = 'תודה על פנייתך לחוות הרוח בגלבוע, איך אפשר לעזור?'
